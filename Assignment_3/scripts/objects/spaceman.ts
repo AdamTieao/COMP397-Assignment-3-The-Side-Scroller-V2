@@ -2,16 +2,23 @@
     KEYCODE_RIGHT: number = 39;
 module objects {
     // PLANE CLASS
-    export class Plane extends createjs.Bitmap {
+    export class Spaceman extends createjs.Bitmap {
+
+        public width: number;
+        public height: number;
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("plane"));
+            super(assets.getResult("spaceman"));
 
-            this.x = 30;
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
+
+            this.y = 430;
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
 
+            
         }
 
         

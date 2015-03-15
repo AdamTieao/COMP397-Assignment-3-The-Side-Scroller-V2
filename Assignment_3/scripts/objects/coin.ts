@@ -1,10 +1,10 @@
 ﻿module objects {
     // ISLAND CLASS
-    export class Island extends createjs.Bitmap {
+    export class Coin extends createjs.Bitmap {
         // PUBLIC INSTANCE VARIABLES
         width: number;
         height: number;
-        dx: number = 1;
+        dx: number = 5;
         dy: number;
         spawnNum: number;
         spawnRangeX: number;
@@ -12,7 +12,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("island"));
+            super(assets.getResult("coin"));
 
 
             this.width = this.getBounds().width;
@@ -23,14 +23,12 @@
 
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-
-            this.spawnRangeX = (640 - 3 * this.width) * 0.25;
-            this.spawnRangeY = (480 - 3 * this.height) * 0.25;
+            
         }
 
         // PUBLIC METHODS
         public update() {
-            this.dy = Math.random() * 10 - 5;
+                        
             this.x -= this.dx;
             //this.y += this.dy;
             // check if island has left the bottom of the screen
@@ -41,10 +39,8 @@
 
         // Reset position of island to the right
         public reset() {
-            this.x = Math.floor(this.width + 640 + this.spawnRangeX * Math.random()
-                    + (this.spawnNum - 1) * (this.spawnRangeX + this.width));
-            this.y = Math.floor(Math.random() * this.spawnRangeY
-                    + (this.spawnNum - 1) * (this.spawnRangeY + this.height));
+            this.x = 640 + this.width;
+            this.y = Math.floor(Math.random() * 480);
         }
 
     }

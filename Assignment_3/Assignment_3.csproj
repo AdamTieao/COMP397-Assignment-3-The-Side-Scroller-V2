@@ -71,11 +71,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\images\1945.bmp" />
+    <Content Include="assets\images\coin.gif" />
+    <Content Include="assets\images\space.png" />
     <Content Include="assets\images\cloud.png" />
     <Content Include="assets\images\island.png" />
     <Content Include="assets\images\ocean.gif" />
     <Content Include="assets\images\plane.png" />
     <Content Include="assets\images\sideplane.gif" />
+    <Content Include="assets\images\spaceman.png" />
+    <Content Include="assets\images\starFar.png" />
+    <Content Include="assets\images\starMid.png" />
+    <Content Include="assets\images\starNear.png" />
     <Content Include="css\game.css" />
     <Content Include="index.html" />
     <Content Include="scripts\lib\easeljs-0.8.0.min.js" />
@@ -90,9 +96,14 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\game.ts" />
+    <TypeScriptCompile Include="scripts\objects\coin.ts" />
     <TypeScriptCompile Include="scripts\objects\island.ts" />
     <TypeScriptCompile Include="scripts\objects\ocean.ts" />
-    <TypeScriptCompile Include="scripts\objects\plane.ts" />
+    <TypeScriptCompile Include="scripts\objects\spaceman.ts" />
+    <TypeScriptCompile Include="scripts\objects\space.ts" />
+    <TypeScriptCompile Include="scripts\objects\starFar.ts" />
+    <TypeScriptCompile Include="scripts\objects\starMid.ts" />
+    <TypeScriptCompile Include="scripts\objects\starNear.ts" />
     <TypeScriptCompile Include="scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
