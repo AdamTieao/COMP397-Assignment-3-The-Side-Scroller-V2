@@ -11,7 +11,7 @@ var objects;
         __extends(StarFar, _super);
         // CONSTRUCTOR
         function StarFar() {
-            _super.call(this, assets.getResult("starFar"));
+            _super.call(this, assetLoader.getResult("starFar"));
             this.dx = 0.05;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;

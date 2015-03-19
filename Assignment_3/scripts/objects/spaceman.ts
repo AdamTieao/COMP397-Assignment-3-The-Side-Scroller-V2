@@ -4,10 +4,11 @@
 
         public width: number;
         public height: number;
+        public _dx: number = 5;
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("spaceman"));
+            super(assetLoader.getResult("spaceman"));
 
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
@@ -19,7 +20,6 @@
             createjs.Sound.play("engine", { loop: -1 });
             
         }
-
         
 
         // PUBLIC METHODS

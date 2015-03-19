@@ -7,7 +7,7 @@
 
 module states {
     // GAME OVER STATE CLASS
-    export class GameOver {
+    export class Instruction {
         // Game Objects 
         public game: createjs.Container;
         public spaceman: objects.Spaceman;
@@ -15,9 +15,7 @@ module states {
         public finalScoreLabel: createjs.Text;
         public highScoreLabel: createjs.Text;
         public tryAgainButton: objects.Button;
-        public menuButton: objects.Button;
         public tryAgain: boolean = false;
-        public menu: boolean = false;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
@@ -45,18 +43,9 @@ module states {
             //Try Again Button
             this.tryAgainButton = new objects.Button("tryAgainButton");
             this.tryAgainButton.on("click", this.tryAgainClicked, this);
-            this.tryAgainButton.on("rollover", this.tryAgainSelected, this);
-            this.tryAgainButton.x = 320 ;
+            this.tryAgainButton.x = 320;
             this.tryAgainButton.y = 320;
             this.game.addChild(this.tryAgainButton);
-
-            //menu Button
-            this.menuButton = new objects.Button("playButton");
-            this.menuButton.on("click", this.menuClicked, this);
-            this.menuButton.on("rollover", this.menuSelected, this);
-            this.menuButton.x = 320;
-            this.menuButton.y = 360;
-            this.game.addChild(this.menuButton);
 
             this.spaceman = new objects.Spaceman();
             this.spaceman.x = 320 - this.tryAgainButton.getBounds().width * 0.7;
@@ -71,33 +60,10 @@ module states {
             this.tryAgain = true;
         }
 
-        public menuClicked() {
-            this.menu = true;
-        }
-
-        public tryAgainSelected() {
-            this.spaceman.x = 320 - this.tryAgainButton.getBounds().width * 0.7;
-            this.spaceman.y = this.tryAgainButton.y - this.spaceman.getBounds().height * 0.1;
-        }
-
-        public menuSelected() {
-            this.spaceman.x = 320 - this.menuButton.getBounds().width * 0.7;
-            this.spaceman.y = this.menuButton.y - this.spaceman.getBounds().height * 0.1;
-        }
-
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public update() {
 
             if (this.tryAgain) {
-                this.game.removeAllChildren();
-                score = 0;
-                lives = 5;
-                stage.removeChild(this.game);
-                currentState = constants.PLAY_STATE;
-                stateChanged = true;
-            }
-
-            if (this.menu) {
                 this.game.removeAllChildren();
                 stage.removeChild(this.game);
                 currentState = constants.MENU_STATE;

@@ -8,7 +8,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("starNear"));
+            super(assetLoader.getResult("starNear"));
 
 
             this.width = this.getBounds().width;

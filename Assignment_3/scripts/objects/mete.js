@@ -11,7 +11,7 @@ var objects;
         __extends(Mete, _super);
         // CONSTRUCTOR
         function Mete() {
-            _super.call(this, assets.getResult("mete"));
+            _super.call(this, assetLoader.getResult("mete"));
             this.sound = "thunder";
             this.name = "mete";
             this.width = this.getBounds().width;

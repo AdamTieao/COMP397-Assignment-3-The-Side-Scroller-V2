@@ -11,7 +11,8 @@ var objects;
         __extends(Spaceman, _super);
         // CONSTRUCTOR
         function Spaceman() {
-            _super.call(this, assets.getResult("spaceman"));
+            _super.call(this, assetLoader.getResult("spaceman"));
+            this._dx = 5;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.y = 430;

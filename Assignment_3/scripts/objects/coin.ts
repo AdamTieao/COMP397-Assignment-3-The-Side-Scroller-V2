@@ -1,5 +1,5 @@
 ﻿module objects {
-    // ISLAND CLASS
+
     export class Coin extends createjs.Bitmap {
         // PUBLIC INSTANCE VARIABLES
         width: number;
@@ -14,7 +14,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("coin"));
+            super(assetLoader.getResult("coin"));
             this.sound = "yay";
             this.name = "coin";
 

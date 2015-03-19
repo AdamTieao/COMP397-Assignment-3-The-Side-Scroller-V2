@@ -11,7 +11,7 @@ var objects;
         __extends(StarNear, _super);
         // CONSTRUCTOR
         function StarNear() {
-            _super.call(this, assets.getResult("starNear"));
+            _super.call(this, assetLoader.getResult("starNear"));
             this.dx = 1;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;

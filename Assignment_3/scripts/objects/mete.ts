@@ -14,7 +14,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("mete"));
+            super(assetLoader.getResult("mete"));
             this.sound = "thunder";
             this.name = "mete";
 

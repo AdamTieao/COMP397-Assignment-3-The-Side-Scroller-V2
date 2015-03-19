@@ -11,7 +11,7 @@ var objects;
         __extends(StarMid, _super);
         // CONSTRUCTOR
         function StarMid() {
-            _super.call(this, assets.getResult("starMid"));
+            _super.call(this, assetLoader.getResult("starMid"));
             this.dx = 0.3;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;

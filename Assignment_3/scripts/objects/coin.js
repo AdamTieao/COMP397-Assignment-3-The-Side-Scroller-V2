@@ -6,12 +6,11 @@ var __extends = this.__extends || function (d, b) {
 };
 var objects;
 (function (objects) {
-    // ISLAND CLASS
     var Coin = (function (_super) {
         __extends(Coin, _super);
         // CONSTRUCTOR
         function Coin() {
-            _super.call(this, assets.getResult("coin"));
+            _super.call(this, assetLoader.getResult("coin"));
             this.dx = 5;
             this.sound = "yay";
             this.name = "coin";

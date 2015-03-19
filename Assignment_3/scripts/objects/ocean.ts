@@ -8,7 +8,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("ocean"));
+            super(assetLoader.getResult("ocean"));
 
 
             this.width = this.getBounds().width;

@@ -12,7 +12,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("island"));
+            super(assetLoader.getResult("island"));
 
 
             this.width = this.getBounds().width;

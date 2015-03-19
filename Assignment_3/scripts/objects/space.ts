@@ -7,7 +7,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assets.getResult("space"));
+            super(assetLoader.getResult("space"));
 
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;

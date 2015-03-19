@@ -11,7 +11,7 @@ var objects;
         __extends(Ocean, _super);
         // CONSTRUCTOR
         function Ocean() {
-            _super.call(this, assets.getResult("ocean"));
+            _super.call(this, assetLoader.getResult("ocean"));
             this.dx = 5;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;

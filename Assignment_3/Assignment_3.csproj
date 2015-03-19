@@ -73,6 +73,7 @@
     <Content Include="assets\images\1945.bmp" />
     <Content Include="assets\images\coin.png" />
     <Content Include="assets\images\mete.png" />
+    <Content Include="assets\images\playButton.png" />
     <Content Include="assets\images\space.png" />
     <Content Include="assets\images\cloud.png" />
     <Content Include="assets\images\island.png" />
@@ -83,6 +84,7 @@
     <Content Include="assets\images\starFar.png" />
     <Content Include="assets\images\starMid.png" />
     <Content Include="assets\images\starNear.png" />
+    <Content Include="assets\images\tryAgainButton.png" />
     <Content Include="css\game.css" />
     <Content Include="index.html" />
     <Content Include="scripts\lib\easeljs-0.8.0.min.js" />
@@ -96,9 +98,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="scripts\constants.ts" />
     <TypeScriptCompile Include="scripts\game.ts" />
+    <TypeScriptCompile Include="scripts\objects\button.ts" />
     <TypeScriptCompile Include="scripts\objects\coin.ts" />
     <TypeScriptCompile Include="scripts\objects\island.ts" />
+    <TypeScriptCompile Include="scripts\objects\label.ts" />
     <TypeScriptCompile Include="scripts\objects\mete.ts" />
     <TypeScriptCompile Include="scripts\objects\ocean.ts" />
     <TypeScriptCompile Include="scripts\objects\spaceman.ts" />
@@ -106,6 +111,10 @@
     <TypeScriptCompile Include="scripts\objects\starFar.ts" />
     <TypeScriptCompile Include="scripts\objects\starMid.ts" />
     <TypeScriptCompile Include="scripts\objects\starNear.ts" />
+    <TypeScriptCompile Include="scripts\states\gameover.ts" />
+    <TypeScriptCompile Include="scripts\states\gameplay.ts" />
+    <TypeScriptCompile Include="scripts\states\instruction.ts" />
+    <TypeScriptCompile Include="scripts\states\menu.ts" />
     <TypeScriptCompile Include="scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />

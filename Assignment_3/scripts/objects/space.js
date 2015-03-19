@@ -11,7 +11,7 @@ var objects;
         __extends(Space, _super);
         // CONSTRUCTOR
         function Space() {
-            _super.call(this, assets.getResult("space"));
+            _super.call(this, assetLoader.getResult("space"));
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
         }
