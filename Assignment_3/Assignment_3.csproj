@@ -71,7 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\images\1945.bmp" />
-    <Content Include="assets\images\coin.gif" />
+    <Content Include="assets\images\coin.png" />
+    <Content Include="assets\images\mete.png" />
     <Content Include="assets\images\space.png" />
     <Content Include="assets\images\cloud.png" />
     <Content Include="assets\images\island.png" />
@@ -98,6 +99,7 @@
     <TypeScriptCompile Include="scripts\game.ts" />
     <TypeScriptCompile Include="scripts\objects\coin.ts" />
     <TypeScriptCompile Include="scripts\objects\island.ts" />
+    <TypeScriptCompile Include="scripts\objects\mete.ts" />
     <TypeScriptCompile Include="scripts\objects\ocean.ts" />
     <TypeScriptCompile Include="scripts\objects\spaceman.ts" />
     <TypeScriptCompile Include="scripts\objects\space.ts" />

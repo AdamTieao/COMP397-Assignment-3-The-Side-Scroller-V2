@@ -7,6 +7,7 @@
 /// <reference path="objects/island.ts" />
 /// <reference path="objects/starfar.ts" />
 /// <reference path="objects/ocean.ts" />
+/// <reference path="objects/mete.ts" />
 /// <reference path="objects/starmid.ts" />
 /// <reference path="objects/starnear.ts" />
 /// <reference path="objects/space.ts" />
@@ -30,14 +31,16 @@ var starNear1;
 var starNear2;
 var space;
 var coin;
+var metes = [];
 var manifest = [
     { id: "cloud", src: "assets/images/cloud.png" },
     { id: "island", src: "assets/images/island.png" },
-    { id: "coin", src: "assets/images/coin.gif" },
+    { id: "coin", src: "assets/images/coin.png" },
     { id: "spaceman", src: "assets/images/spaceman.png" },
     { id: "starFar", src: "assets/images/starFar.png" },
     { id: "starMid", src: "assets/images/starMid.png" },
     { id: "starNear", src: "assets/images/starNear.png" },
+    { id: "mete", src: "assets/images/mete.png" },
     { id: "space", src: "assets/images/space.png" }
 ];
 function Preload() {
@@ -67,6 +70,9 @@ function gameLoop() {
     starNear1.update();
     starNear2.update();
     coin.update();
+    for (var mete = 0; mete < 3; mete++) {
+        metes[mete].update();
+    }
     stage.update(); // Refreshes our stage
     connStarFar();
     connStarMid();
@@ -117,13 +123,17 @@ function main() {
     starNear2.x = starNear2.width;
     starNear2.y = -80;
     stage.addChild(starNear2);
-    //Plane object
-    spaceman = new objects.Spaceman();
-    spaceman.x = spaceman.width * 0.5;
-    stage.addChild(spaceman);
     coin = new objects.Coin();
     coin.reset();
     stage.addChild(coin);
+    for (var mete = 0; mete < 3; mete++) {
+        metes[mete] = new objects.Mete();
+        metes[mete].reset();
+        stage.addChild(metes[mete]);
+    }
+    spaceman = new objects.Spaceman();
+    spaceman.x = spaceman.width * 0.5;
+    stage.addChild(spaceman);
     console.log(island1.y);
     console.log(island2.y);
     console.log(island3.y);
