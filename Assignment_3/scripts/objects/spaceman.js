@@ -4,7 +4,6 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-var KEYCODE_LEFT = 37, KEYCODE_RIGHT = 39;
 var objects;
 (function (objects) {
     // PLANE CLASS
@@ -18,21 +17,12 @@ var objects;
             this.y = 430;
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
+            createjs.Sound.play("engine", { loop: -1 });
         }
         // PUBLIC METHODS
         Spaceman.prototype.update = function () {
             this.y = stage.mouseY;
             //this.x = stage.mouseX;
-            function keyPressed(event) {
-                switch (event.keyCode) {
-                    case KEYCODE_LEFT:
-                        this.x -= 5;
-                        break;
-                    case KEYCODE_RIGHT:
-                        this.x += 5;
-                        break;
-                }
-            }
         };
         return Spaceman;
     })(createjs.Bitmap);

@@ -13,6 +13,8 @@ var objects;
         function Coin() {
             _super.call(this, assets.getResult("coin"));
             this.dx = 5;
+            this.sound = "yay";
+            this.name = "coin";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.reset();
@@ -32,6 +34,7 @@ var objects;
         Coin.prototype.reset = function () {
             this.x = 640 + this.width;
             this.y = Math.floor(Math.random() * 480);
+            this.visible = true;
         };
         return Coin;
     })(createjs.Bitmap);

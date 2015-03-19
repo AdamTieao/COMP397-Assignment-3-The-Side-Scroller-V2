@@ -9,11 +9,14 @@
         spawnNum: number;
         spawnRangeX: number;
         spawnRangeY: number;
+        sound: string;
+        name: string;
 
         // CONSTRUCTOR
         constructor() {
             super(assets.getResult("coin"));
-
+            this.sound = "yay";
+            this.name = "coin";
 
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
@@ -23,12 +26,12 @@
 
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-            
+
         }
 
         // PUBLIC METHODS
         public update() {
-                        
+
             this.x -= this.dx;
             //this.y += this.dy;
             // check if island has left the bottom of the screen
@@ -41,6 +44,7 @@
         public reset() {
             this.x = 640 + this.width;
             this.y = Math.floor(Math.random() * 480);
+            this.visible = true;
         }
 
     }

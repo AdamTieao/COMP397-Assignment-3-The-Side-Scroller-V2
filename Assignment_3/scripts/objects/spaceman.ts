@@ -1,6 +1,4 @@
-﻿var KEYCODE_LEFT: number = 37,
-    KEYCODE_RIGHT: number = 39;
-module objects {
+﻿module objects {
     // PLANE CLASS
     export class Spaceman extends createjs.Bitmap {
 
@@ -18,6 +16,7 @@ module objects {
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
 
+            createjs.Sound.play("engine", { loop: -1 });
             
         }
 
@@ -29,16 +28,6 @@ module objects {
             this.y = stage.mouseY;
             //this.x = stage.mouseX;
 
-            function keyPressed(event) {
-                switch (event.keyCode) {
-                    case KEYCODE_LEFT:
-                        this.x -= 5;
-                        break;
-                    case KEYCODE_RIGHT:
-                        this.x += 5;
-                        break;
-                }
-            }            
         }
 
     }

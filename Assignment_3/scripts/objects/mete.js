@@ -12,6 +12,8 @@ var objects;
         // CONSTRUCTOR
         function Mete() {
             _super.call(this, assets.getResult("mete"));
+            this.sound = "thunder";
+            this.name = "mete";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.reset();

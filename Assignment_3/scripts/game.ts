@@ -6,7 +6,6 @@
 
 
 
-
 /// <reference path="objects/spaceman.ts" />
 /// <reference path="objects/island.ts" />
 /// <reference path="objects/starfar.ts" />
@@ -24,6 +23,7 @@ var canvas;
 var game: createjs.Container;
 var stage: createjs.Stage;
 var assets: createjs.LoadQueue;
+var assetLoader: createjs.LoadQueue;
 
 // Game Objects 
 var spaceman: objects.Spaceman;
@@ -40,6 +40,12 @@ var starNear2: objects.StarNear;
 var space: objects.Space;
 var coin: objects.Coin;
 var metes: objects.Mete[] = [];
+var scoreBoard: createjs.Text;
+var livesBoard: createjs.Text;
+var liveNumBoard: createjs.Text;
+
+var score: number = 0;
+var lives: number = 5;
 
 var manifest = [
     { id: "cloud", src: "assets/images/cloud.png" },
@@ -50,7 +56,10 @@ var manifest = [
     { id: "starMid", src: "assets/images/starMid.png" },
     { id: "starNear", src: "assets/images/starNear.png" },
     { id: "mete", src: "assets/images/mete.png" },
-    { id: "space", src: "assets/images/space.png" }
+    { id: "space", src: "assets/images/space.png" },
+    { id: "engine", src: "assets/audio/engine.ogg" },
+    { id: "yay", src: "assets/audio/yay.ogg" },
+    { id: "thunder", src: "assets/audio/thunder.ogg" }
 ];
 
 
@@ -68,11 +77,41 @@ function Preload() {
 function init() {
     canvas = document.getElementById("canvas");
     stage = new createjs.Stage(canvas);
-    stage.enableMouseOver(20); // Enable mouse events       
+    game = new createjs.Container;
+    stage.enableMouseOver(20); // Enable mouse events   
+    stage.addChild(game);    
     createjs.Ticker.setFPS(60); // 60 frames per second
     createjs.Ticker.addEventListener("tick", gameLoop);
 
     main();
+}
+
+function distance(p1, p2) {
+    return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
+}
+
+function checkCollision(collider) {
+    var planePosition = new createjs.Point(spaceman.x, spaceman.y);
+    var cloudPosition = new createjs.Point(collider.x, collider.y);
+    var theDistance = distance(planePosition, cloudPosition);
+    if (theDistance < ((spaceman.width * 0.5) + (collider.width * 0.5))) {
+        if (collider.isColliding != true) {
+            createjs.Sound.play(collider.sound);
+            if (collider.name == "mete") {
+                lives--;
+            }
+            if (collider.name == "coin") {
+                score += 100;
+                coin.reset();                
+            }            
+            console.log(lives);
+            console.log(score);
+        }
+        collider.isColliding = true;
+    }
+    else {
+        collider.isColliding = false;
+    }
 }
 
 function gameLoop() {
@@ -91,15 +130,27 @@ function gameLoop() {
     starNear2.update();
     coin.update();
 
+    checkCollision(coin);
+
     for (var mete = 0; mete < 3; mete++) {        
-        metes[mete].update();        
+        metes[mete].update();    
+        checkCollision(metes[mete]);  
     }
     
+
 
     stage.update(); // Refreshes our stage
     connStarFar();
     connStarMid();
     connStarNear();
+    liveNumBoard.text = lives.toString();
+    scoreBoard.text = "Score: " + score.toString();
+
+    if (lives <= 2) {
+        liveNumBoard.color = "red";        
+    }
+
+
     
 }
 
@@ -113,7 +164,7 @@ function gameLoop() {
 function main() {
 
     space = new objects.Space();
-    stage.addChild(space);
+    game.addChild(space);
 
     
 
@@ -141,56 +192,60 @@ function main() {
     starFar1 = new objects.StarFar();
     starFar1.x = 0;
     starFar1.y = -80;
-    stage.addChild(starFar1);
+    game.addChild(starFar1);
 
     starFar2 = new objects.StarFar();
     starFar2.x = starFar2.width;
     starFar2.y = -80;
-    stage.addChild(starFar2);
+    game.addChild(starFar2);
 
     starMid1 = new objects.StarMid();
     starMid1.x = 0;
     starMid1.y = -80;
-    stage.addChild(starMid1);
+    game.addChild(starMid1);
 
     starMid2 = new objects.StarMid();
     starMid2.x = starMid2.width;
     starMid2.y = -80;
-    stage.addChild(starMid2);
+    game.addChild(starMid2);
 
     starNear1 = new objects.StarNear();
     starNear1.x = 0;
     starNear1.y = -80;
-    stage.addChild(starNear1);
+    game.addChild(starNear1);
 
     starNear2 = new objects.StarNear();
     starNear2.x = starNear2.width;
     starNear2.y = -80;
-    stage.addChild(starNear2);
+    game.addChild(starNear2);
 
 
     coin = new objects.Coin();
     coin.reset();
-    stage.addChild(coin);
+    game.addChild(coin);
 
     for (var mete = 0; mete < 3; mete++)
     {
         metes[mete] = new objects.Mete();
         metes[mete].reset();
-        stage.addChild(metes[mete]);
+        game.addChild(metes[mete]);
     }
 
     spaceman = new objects.Spaceman();
     spaceman.x = spaceman.width * 0.5;
-    stage.addChild(spaceman);
-
+    game.addChild(spaceman);
     
-    console.log(island1.y);
-    console.log(island2.y);
-    console.log(island3.y);
-    console.log(island4.y);
+    scoreBoard = new createjs.Text("Score: " + score.toString(), "40px Arial", "yellow");
+    scoreBoard.x = 250;
+    game.addChild(scoreBoard)
 
-    
+    livesBoard = new createjs.Text("Lives: ", "40px Arial", "yellow");
+    livesBoard.x = 10;
+    game.addChild(livesBoard);
+
+    liveNumBoard = new createjs.Text("" + lives.toString, "40px Arial", "yellow");
+    liveNumBoard.x = 130;
+    game.addChild(liveNumBoard);
 }
 
 function connStarFar() {

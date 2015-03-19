@@ -9,11 +9,14 @@
         spawnNum: number;
         spawnRangeX: number;
         spawnRangeY: number;
+        sound: string;
+        name: string;
 
         // CONSTRUCTOR
         constructor() {
             super(assets.getResult("mete"));
-
+            this.sound = "thunder";
+            this.name = "mete";
 
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
