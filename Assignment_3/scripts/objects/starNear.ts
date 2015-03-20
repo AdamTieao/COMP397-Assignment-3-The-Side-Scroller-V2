@@ -24,12 +24,13 @@
             this.x -= this.dx;
         }
 
-        // Reset position of island to the top
+        // Reset position of star to the right
         public reset() {
             this.x = this.width;
             this.y = -80;
         }
 
+        // Follow the other star
         public follow() {
             this.x = 640 + this.width;
             this.y = -80;

@@ -12,14 +12,13 @@
         sound: string;
         name: string;
 
-
+        // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         constructor(buttonName: string) {
-            super(assetLoader.getResult(buttonName));
+            super(assetLoader.getResult(buttonName));   // Set the button image
 
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
-
-
+            
             this.setButtonListeners();
 
             this.regX = this.width * 0.5;
@@ -27,6 +26,7 @@
 
         }
 
+        // How the buttons react
         public setButtonListeners() {
             this.cursor = 'pointer';
             this.on('rollover', this.onButtonOver);
@@ -34,15 +34,15 @@
             this.on('mousedown', this.onButtonDown);
         }
 
-        public onButtonOver() {
+        public onButtonOver() { // When mouseover
             this.alpha = 0.8;
         }
 
-        public onButtonOut() {
+        public onButtonOut() {  // When mouseout
             this.alpha = 1;
         }
 
-        public onButtonDown() {
+        public onButtonDown() { // When mousedown
             this.alpha = 0.3;
         }
     }

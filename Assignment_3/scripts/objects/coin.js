@@ -10,10 +10,10 @@ var objects;
         __extends(Coin, _super);
         // CONSTRUCTOR
         function Coin() {
-            _super.call(this, assetLoader.getResult("coin"));
+            _super.call(this, assetLoader.getResult("coin")); // Set the coin image
             this.dx = 5;
-            this.sound = "coinSound";
-            this.name = "coin";
+            this.sound = "coinSound"; // Set the sound
+            this.name = "coin"; // Set the collision name
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.reset();
@@ -23,12 +23,12 @@ var objects;
         // PUBLIC METHODS
         Coin.prototype.update = function () {
             this.x -= this.dx;
-            // check if island has left the bottom of the screen
+            // check if the coin has left the left side of the screen
             if (this.x <= -this.width) {
                 this.reset();
             }
         };
-        // Reset position of island to the right
+        // Reset position of coin to the right
         Coin.prototype.reset = function () {
             this.x = 640 + this.width;
             this.y = Math.random() * 480;

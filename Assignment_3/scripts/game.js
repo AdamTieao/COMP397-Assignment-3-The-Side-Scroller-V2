@@ -22,6 +22,7 @@
 var currentState;
 var currentStateFunction;
 var stateChanged = false;
+// Game States
 var gamePlay;
 var gameOver;
 var menu;
@@ -32,6 +33,8 @@ var stage;
 var assetLoader;
 var currentScore = 0;
 var highScore = 0;
+var score = 0;
+var lives = 5;
 // Game Objects 
 var starFar1;
 var starFar2;
@@ -40,8 +43,7 @@ var starMid2;
 var starNear1;
 var starNear2;
 var space;
-var score = 0;
-var lives = 5;
+// Images and Sounds
 var manifest = [
     { id: "coin", src: "assets/images/coin.png" },
     { id: "spaceman", src: "assets/images/spaceman.png" },
@@ -62,24 +64,30 @@ var manifest = [
     { id: "heart", src: "assets/images/heart.png" },
     { id: "tryAgainButton", src: "assets/images/tryAgainButton.png" }
 ];
+// Preload function
 function Preload() {
     assetLoader = new createjs.LoadQueue(); // create a new preloader
     assetLoader.installPlugin(createjs.Sound); // need plugin for sounds
     assetLoader.on("complete", init, this); // when assets finished preloading - then init function
     assetLoader.loadManifest(manifest);
 }
+// init function
 function init() {
     canvas = document.getElementById("canvas");
     stage = new createjs.Stage(canvas);
     backgrounds();
+    // Keep playing background music
     createjs.Sound.play("background", { loop: -1 });
     stage.enableMouseOver(20); // Enable mouse events   
     createjs.Ticker.setFPS(60); // 60 frames per second
     createjs.Ticker.addEventListener("tick", gameLoop);
+    // Starting State as a start page
     currentState = constants.MENU_STATE;
     changeState(currentState);
 }
+// gameloop function
 function gameLoop() {
+    // Check if the state is changed
     if (stateChanged) {
         changeState(currentState);
         stateChanged = false;
@@ -87,6 +95,7 @@ function gameLoop() {
     else {
         currentStateFunction.update();
     }
+    // Keep the background moving no matter what happens
     spaceUpdate();
 }
 function changeState(state) {
@@ -107,15 +116,19 @@ function changeState(state) {
             currentStateFunction = gameOver;
             break;
         case constants.INSTRUCTION_STATE:
+            // instantiate instruction screen
             instruction = new states.Instruction();
             currentStateFunction = instruction;
             break;
     }
 }
+// setup the background which will never be changed
 function backgrounds() {
+    // Add static background
     space = new objects.Space();
     stage.addChild(space);
-    starFar1 = new objects.StarFar();
+    // Three levels' background. Each level has two moving one after another
+    starFar1 = new objects.StarFar(); // The farthest stars
     starFar1.x = 0;
     starFar1.y = -80;
     stage.addChild(starFar1);
@@ -123,7 +136,7 @@ function backgrounds() {
     starFar2.x = starFar2.width;
     starFar2.y = -80;
     stage.addChild(starFar2);
-    starMid1 = new objects.StarMid();
+    starMid1 = new objects.StarMid(); // The farther stars
     starMid1.x = 0;
     starMid1.y = -80;
     stage.addChild(starMid1);
@@ -131,7 +144,7 @@ function backgrounds() {
     starMid2.x = starMid2.width;
     starMid2.y = -80;
     stage.addChild(starMid2);
-    starNear1 = new objects.StarNear();
+    starNear1 = new objects.StarNear(); // The nearest stars
     starNear1.x = 0;
     starNear1.y = -80;
     stage.addChild(starNear1);
@@ -140,6 +153,7 @@ function backgrounds() {
     starNear2.y = -80;
     stage.addChild(starNear2);
 }
+// 4 levels' background moving function
 function spaceUpdate() {
     starFar1.update();
     starFar2.update();
@@ -147,10 +161,12 @@ function spaceUpdate() {
     starMid2.update();
     starNear1.update();
     starNear2.update();
+    // Make the two background images in each level connected
     connStarFar();
     connStarMid();
     connStarNear();
 }
+// Connect the Level 2 stars
 function connStarFar() {
     if (starFar1.x <= -starFar1.width) {
         starFar1.reset();
@@ -159,6 +175,7 @@ function connStarFar() {
         starFar2.reset();
     }
 }
+// Connect the Level 3 stars
 function connStarMid() {
     if (starMid1.x <= -starMid1.width) {
         starMid1.reset();
@@ -167,6 +184,7 @@ function connStarMid() {
         starMid2.reset();
     }
 }
+// Connect the Level 4 starts
 function connStarNear() {
     if (starNear1.x <= -starNear1.width) {
         starNear1.reset();

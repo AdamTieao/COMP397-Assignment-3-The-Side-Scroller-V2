@@ -14,9 +14,9 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assetLoader.getResult("coin"));
-            this.sound = "coinSound";
-            this.name = "coin";
+            super(assetLoader.getResult("coin"));   // Set the coin image
+            this.sound = "coinSound";               // Set the sound
+            this.name = "coin";                     // Set the collision name
 
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
@@ -34,13 +34,13 @@
 
             this.x -= this.dx;
 
-            // check if island has left the bottom of the screen
+            // check if the coin has left the left side of the screen
             if (this.x <= -this.width) {
                 this.reset();
             }
         }
 
-        // Reset position of island to the right
+        // Reset position of coin to the right
         public reset() {
             this.x = 640 + this.width;
             this.y = Math.random() * 480;

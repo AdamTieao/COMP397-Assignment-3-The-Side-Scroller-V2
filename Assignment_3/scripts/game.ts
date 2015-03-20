@@ -30,6 +30,7 @@ var currentState: number;
 var currentStateFunction: any;
 var stateChanged: boolean = false;
 
+// Game States
 var gamePlay: states.GamePlay;
 var gameOver: states.GameOver;
 var menu: states.Menu;
@@ -41,8 +42,8 @@ var stage: createjs.Stage;
 var assetLoader: createjs.LoadQueue;
 var currentScore = 0;
 var highScore = 0;
-
-
+var score: number = 0;
+var lives: number = 5;
 
 // Game Objects 
 var starFar1: objects.StarFar;
@@ -53,9 +54,7 @@ var starNear1: objects.StarNear;
 var starNear2: objects.StarNear;
 var space: objects.Space;
 
-var score: number = 0;
-var lives: number = 5;
-
+// Images and Sounds
 var manifest = [
     { id: "coin", src: "assets/images/coin.png" },
     { id: "spaceman", src: "assets/images/spaceman.png" },
@@ -77,7 +76,7 @@ var manifest = [
     { id: "tryAgainButton", src: "assets/images/tryAgainButton.png" }
 ];
 
-
+// Preload function
 function Preload() {
     assetLoader = new createjs.LoadQueue(); // create a new preloader
     assetLoader.installPlugin(createjs.Sound); // need plugin for sounds
@@ -86,36 +85,39 @@ function Preload() {
     assetLoader.loadManifest(manifest);
 }
 
-
+// init function
 function init() {
     canvas = document.getElementById("canvas");
     stage = new createjs.Stage(canvas);
     backgrounds();
 
+    // Keep playing background music
     createjs.Sound.play("background", { loop: -1 });
 
     stage.enableMouseOver(20); // Enable mouse events   
     createjs.Ticker.setFPS(60); // 60 frames per second
     createjs.Ticker.addEventListener("tick", gameLoop);
 
+    // Starting State as a start page
     currentState = constants.MENU_STATE;
     changeState(currentState);
     
 
 }
 
+// gameloop function
 function gameLoop() {
 
-
+    // Check if the state is changed
     if (stateChanged) {
         changeState(currentState);
         stateChanged = false;
     }
     else {
         currentStateFunction.update();
-        //menu.update();        
     }
     
+    // Keep the background moving no matter what happens
     spaceUpdate();
 }
 
@@ -140,18 +142,23 @@ function changeState(state: number): void {
             currentStateFunction = gameOver;
             break;
 
-        case constants.INSTRUCTION_STATE:
+        case constants.INSTRUCTION_STATE:            
+            // instantiate instruction screen
             instruction = new states.Instruction();
             currentStateFunction = instruction;
             break;
     }
 }
 
+// setup the background which will never be changed
 function backgrounds() {
+
+    // Add static background
     space = new objects.Space();
     stage.addChild(space);
     
-    starFar1 = new objects.StarFar();
+    // Three levels' background. Each level has two moving one after another
+    starFar1 = new objects.StarFar();   // The farthest stars
     starFar1.x = 0;
     starFar1.y = -80;
     stage.addChild(starFar1);
@@ -161,7 +168,7 @@ function backgrounds() {
     starFar2.y = -80;
     stage.addChild(starFar2);
 
-    starMid1 = new objects.StarMid();
+    starMid1 = new objects.StarMid();   // The farther stars
     starMid1.x = 0;
     starMid1.y = -80;
     stage.addChild(starMid1);
@@ -171,7 +178,7 @@ function backgrounds() {
     starMid2.y = -80;
     stage.addChild(starMid2);
 
-    starNear1 = new objects.StarNear();
+    starNear1 = new objects.StarNear(); // The nearest stars
     starNear1.x = 0;
     starNear1.y = -80;
     stage.addChild(starNear1);
@@ -182,6 +189,7 @@ function backgrounds() {
     stage.addChild(starNear2);
 }
 
+// 4 levels' background moving function
 function spaceUpdate(){
     starFar1.update();
     starFar2.update();
@@ -190,37 +198,41 @@ function spaceUpdate(){
     starNear1.update();
     starNear2.update();
 
+    // Make the two background images in each level connected
     connStarFar();
     connStarMid();
     connStarNear();
 }
 
+// Connect the Level 2 stars
 function connStarFar() {
-    if (starFar1.x <= -starFar1.width) {
+    if (starFar1.x <= -starFar1.width) {    // To check if the background moves out of the screen
         starFar1.reset();
     }
 
-    if (starFar2.x <= -starFar2.width) {
+    if (starFar2.x <= -starFar2.width) {    // To check if the background moves out of the screen
         starFar2.reset();
     }
 }
 
+// Connect the Level 3 stars
 function connStarMid() {
-    if (starMid1.x <= -starMid1.width) {
+    if (starMid1.x <= -starMid1.width) {    // To check if the background moves out of the screen
         starMid1.reset();
     }
 
-    if (starMid2.x <= -starMid2.width) {
+    if (starMid2.x <= -starMid2.width) {    // To check if the background moves out of the screen
         starMid2.reset();
     }
 }
 
+// Connect the Level 4 starts
 function connStarNear() {
-    if (starNear1.x <= -starNear1.width) {
+    if (starNear1.x <= -starNear1.width) {    // To check if the background moves out of the screen
         starNear1.reset();
     }
 
-    if (starNear2.x <= -starNear2.width) {
+    if (starNear2.x <= -starNear2.width) {    // To check if the background moves out of the screen
         starNear2.reset();
     }
 }

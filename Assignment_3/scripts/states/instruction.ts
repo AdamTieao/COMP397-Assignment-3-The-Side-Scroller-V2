@@ -14,38 +14,38 @@ module states {
         public instruction3: createjs.Text;
         public instruction4: createjs.Text;
         public menuButton: objects.Button;
-        public tryAgain: boolean = false;
+        public menu: boolean = false;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         constructor() {
             // Instantiate Game Container
             this.game = new createjs.Container();
 
-            //Game Over Label
+            // Instruction 1
             this.instruction1 = new createjs.Text("Try to get more coins.", "25px Consolas", "yellow");
             this.instruction1.x = 320 - this.instruction1.getBounds().width * 0.5;
             this.instruction1.y = 70;
             this.game.addChild(this.instruction1);
 
-            //Final Score Label
+            // Instruction 2
             this.instruction2 = new createjs.Text("Stay away from meteorites.", "25px Consolas", "yellow");
             this.instruction2.x = 320 - this.instruction2.getBounds().width * 0.5;
             this.instruction2.y = 110;
             this.game.addChild(this.instruction2);
 
-            //High Score Label
+            // Instruction 3
             this.instruction3 = new createjs.Text("You have 5 lives", "25px Consolas", "yellow");
             this.instruction3.x = 320 - this.instruction3.getBounds().width * 0.5;
             this.instruction3.y = 150;
             this.game.addChild(this.instruction3);
 
-            //High Score Label
+            // Instruction 4
             this.instruction4 = new createjs.Text("Let's see who can get the highest score!", "25px Consolas", "yellow");
             this.instruction4.x = 320 - this.instruction4.getBounds().width * 0.5;
             this.instruction4.y = 190;
             this.game.addChild(this.instruction4);
 
-            //Try Again Button
+            // Menu Button
             this.menuButton = new objects.Button("menuButton");
             this.menuButton.on("click", this.menuClicked, this);
             this.menuButton.on("rollover", this.menuSelected, this);
@@ -53,6 +53,7 @@ module states {
             this.menuButton.y = 320;
             this.game.addChild(this.menuButton);
 
+            // Spaceman position
             this.spaceman = new objects.Spaceman();
             this.spaceman.x = 320 - this.menuButton.width * 0.7;
             this.spaceman.y = this.menuButton.y - this.spaceman.height * 0.1;
@@ -62,21 +63,24 @@ module states {
             stage.addChild(this.game);
         } // Constructor
 
+        // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // MenuButton clicked function
         public menuClicked() {
             createjs.Sound.play("click", { loop: 1 });
-            this.tryAgain = true;
+            this.menu = true;
         }
 
+        // MenuButton mouseover function
         public menuSelected() {
             createjs.Sound.play("select", { loop: 1 });
             this.spaceman.x = 320 - this.menuButton.width * 0.7;
             this.spaceman.y = this.menuButton.y - this.spaceman.height * 0.1;
         }
 
-        // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public update() {
 
-            if (this.tryAgain) {
+            // Check if the state is changed
+            if (this.menu) {
                 this.game.removeAllChildren();
                 stage.removeChild(this.game);
                 currentState = constants.MENU_STATE;

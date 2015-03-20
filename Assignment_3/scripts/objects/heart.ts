@@ -4,7 +4,7 @@
 
         // CONSTRUCTOR
         constructor() {
-            super(assetLoader.getResult("heart"));
+            super(assetLoader.getResult("heart"));  // Set the heart image
         }
 
     }

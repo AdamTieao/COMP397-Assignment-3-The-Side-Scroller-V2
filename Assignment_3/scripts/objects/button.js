@@ -9,6 +9,7 @@ var objects;
     // BUTTON CLASS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     var Button = (function (_super) {
         __extends(Button, _super);
+        // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function Button(buttonName) {
             _super.call(this, assetLoader.getResult(buttonName));
             this.dx = 5;
@@ -18,6 +19,7 @@ var objects;
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
         }
+        // How the buttons react
         Button.prototype.setButtonListeners = function () {
             this.cursor = 'pointer';
             this.on('rollover', this.onButtonOver);

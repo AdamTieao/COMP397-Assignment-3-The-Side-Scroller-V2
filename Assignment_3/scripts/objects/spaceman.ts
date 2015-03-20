@@ -25,7 +25,8 @@
         public update() {
 
             this.y = stage.mouseY;
-            //this.x = stage.mouseX;
+            // Option to choose whether to allow the spaceman moving left and right
+            //this.x = stage.mouseX;    
 
         }
 
