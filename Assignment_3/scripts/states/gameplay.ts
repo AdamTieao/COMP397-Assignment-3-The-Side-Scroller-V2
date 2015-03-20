@@ -84,10 +84,11 @@ module states {
                     createjs.Sound.play(collider.sound);
                     if (collider.name == "mete") {
                         lives--;
+                        collider.reset();
                     }
                     if (collider.name == "coin") {
                         score += 100;
-                        this.coin.reset();
+                        collider.reset();
                     }
                     console.log(lives);
                     console.log(score);
@@ -121,7 +122,6 @@ module states {
             }
 
             if (lives <= 0) {
-                createjs.Sound.stop();
                 if (score >= highScore) {
                     highScore = score;
                 }

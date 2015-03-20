@@ -11,10 +11,11 @@ module states {
         // Game Objects 
         public game: createjs.Container;
         public spaceman: objects.Spaceman;
-        public gameOverLabel: createjs.Text;
-        public finalScoreLabel: createjs.Text;
-        public highScoreLabel: createjs.Text;
-        public tryAgainButton: objects.Button;
+        public instruction1: createjs.Text;
+        public instruction2: createjs.Text;
+        public instruction3: createjs.Text;
+        public instruction4: createjs.Text;
+        public menuButton: objects.Button;
         public tryAgain: boolean = false;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -23,41 +24,55 @@ module states {
             this.game = new createjs.Container();
 
             //Game Over Label
-            this.gameOverLabel = new createjs.Text("GAME OVER", "60px Consolas", "red");
-            this.gameOverLabel.x = 320 - this.gameOverLabel.getBounds().width * 0.5;
-            this.gameOverLabel.y = 40;
-            this.game.addChild(this.gameOverLabel);
+            this.instruction1 = new createjs.Text("Try to get more coins.", "25px Consolas", "yellow");
+            this.instruction1.x = 320 - this.instruction1.getBounds().width * 0.5;
+            this.instruction1.y = 70;
+            this.game.addChild(this.instruction1);
 
             //Final Score Label
-            this.finalScoreLabel = new createjs.Text("Final Score: " + score.toString(), "40px Consolas", "yellow");
-            this.finalScoreLabel.x = 320 - this.finalScoreLabel.getBounds().width * 0.5;
-            this.finalScoreLabel.y = 140;
-            this.game.addChild(this.finalScoreLabel);
+            this.instruction2 = new createjs.Text("Stay away from meteorites.", "25px Consolas", "yellow");
+            this.instruction2.x = 320 - this.instruction2.getBounds().width * 0.5;
+            this.instruction2.y = 110;
+            this.game.addChild(this.instruction2);
 
             //High Score Label
-            this.highScoreLabel = new createjs.Text("Highest Score: " + highScore.toString(), "40px Consolas", "yellow");
-            this.highScoreLabel.x = 320 - this.highScoreLabel.getBounds().width * 0.5;
-            this.highScoreLabel.y = 200;
-            this.game.addChild(this.highScoreLabel);
+            this.instruction3 = new createjs.Text("You have 5 lives", "25px Consolas", "yellow");
+            this.instruction3.x = 320 - this.instruction3.getBounds().width * 0.5;
+            this.instruction3.y = 150;
+            this.game.addChild(this.instruction3);
+
+            //High Score Label
+            this.instruction4 = new createjs.Text("Let's see who can get the highest score!", "25px Consolas", "yellow");
+            this.instruction4.x = 320 - this.instruction4.getBounds().width * 0.5;
+            this.instruction4.y = 190;
+            this.game.addChild(this.instruction4);
 
             //Try Again Button
-            this.tryAgainButton = new objects.Button("tryAgainButton");
-            this.tryAgainButton.on("click", this.tryAgainClicked, this);
-            this.tryAgainButton.x = 320;
-            this.tryAgainButton.y = 320;
-            this.game.addChild(this.tryAgainButton);
+            this.menuButton = new objects.Button("tryAgainButton");
+            this.menuButton.on("click", this.menuClicked, this);
+            this.menuButton.on("rollover", this.menuSelected, this);
+            this.menuButton.x = 320;
+            this.menuButton.y = 320;
+            this.game.addChild(this.menuButton);
 
             this.spaceman = new objects.Spaceman();
-            this.spaceman.x = 320 - this.tryAgainButton.getBounds().width * 0.7;
-            this.spaceman.y = this.tryAgainButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.menuButton.getBounds().width * 0.7;
+            this.spaceman.y = this.menuButton.y - this.spaceman.getBounds().height * 0.1;
             this.game.addChild(this.spaceman);
 
             // Add Game Container to Stage
             stage.addChild(this.game);
         } // Constructor
 
-        public tryAgainClicked() {
+        public menuClicked() {
+            createjs.Sound.play("click", { loop: 1 });
             this.tryAgain = true;
+        }
+
+        public menuSelected() {
+            createjs.Sound.play("select", { loop: 1 });
+            this.spaceman.x = 320 - this.menuButton.getBounds().width * 0.7;
+            this.spaceman.y = this.menuButton.y - this.spaceman.getBounds().height * 0.1;
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++

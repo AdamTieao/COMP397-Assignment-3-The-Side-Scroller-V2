@@ -15,7 +15,7 @@
         // CONSTRUCTOR
         constructor() {
             super(assetLoader.getResult("coin"));
-            this.sound = "yay";
+            this.sound = "coinSound";
             this.name = "coin";
 
             this.width = this.getBounds().width;

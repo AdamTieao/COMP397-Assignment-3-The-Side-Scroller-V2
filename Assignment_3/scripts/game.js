@@ -62,10 +62,14 @@ var manifest = [
     { id: "starNear", src: "assets/images/starNear.png" },
     { id: "mete", src: "assets/images/mete.png" },
     { id: "space", src: "assets/images/space.png" },
-    { id: "engine", src: "assets/audio/engine.ogg" },
-    { id: "yay", src: "assets/audio/yay.ogg" },
-    { id: "thunder", src: "assets/audio/thunder.ogg" },
-    { id: "playButton", src: "assets/images/playButton.png" },
+    { id: "background", src: "assets/audio/BGM.mp3" },
+    { id: "select", src: "assets/audio/selectSound.wav" },
+    { id: "click", src: "assets/audio/clickSound.wav" },
+    { id: "coinSound", src: "assets/audio/coinSound.mp3" },
+    { id: "explosion", src: "assets/audio/explosionSound.wav" },
+    { id: "startButton", src: "assets/images/startButton.png" },
+    { id: "menuButton", src: "assets/images/menuButton.png" },
+    { id: "instructionButton", src: "assets/images/instructionButton.png" },
     { id: "tryAgainButton", src: "assets/images/tryAgainButton.png" }
 ];
 function Preload() {
@@ -78,6 +82,7 @@ function init() {
     canvas = document.getElementById("canvas");
     stage = new createjs.Stage(canvas);
     backgrounds();
+    createjs.Sound.play("background", { loop: -1 });
     stage.enableMouseOver(20); // Enable mouse events   
     createjs.Ticker.setFPS(60); // 60 frames per second
     createjs.Ticker.addEventListener("tick", gameLoop);

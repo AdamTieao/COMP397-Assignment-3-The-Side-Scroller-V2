@@ -12,7 +12,7 @@ var objects;
         // CONSTRUCTOR
         function Mete() {
             _super.call(this, assetLoader.getResult("mete"));
-            this.sound = "thunder";
+            this.sound = "explosion";
             this.name = "mete";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
@@ -22,17 +22,19 @@ var objects;
         }
         // PUBLIC METHODS
         Mete.prototype.update = function () {
-            this.x -= this.dx;
-            this.y += this.dy;
+            this.x -= this._dx;
+            this.y += this._dy;
             // check if island has left the bottom of the screen
             if (this.x <= -this.width) {
                 this.reset();
             }
+            this.rotation += this._dr;
         };
         // Reset position of island to the right
         Mete.prototype.reset = function () {
-            this.dx = Math.floor(Math.random() * 5 + 5);
-            this.dy = Math.floor(Math.random() * 4 - 2);
+            this._dx = Math.floor(Math.random() * 5 + 5);
+            this._dy = Math.floor(Math.random() * 4 - 2);
+            this._dr = Math.floor(Math.random() * 4 - 2);
             this.x = 640 + this.width;
             this.y = Math.floor(Math.random() * 480);
         };

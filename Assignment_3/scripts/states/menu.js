@@ -18,19 +18,19 @@ var states;
             // Instantiate Game Container
             this.game = new createjs.Container();
             //Game Over Label
-            this.mailPilotLabel = new createjs.Text("MAIL PILOT", "60px Consolas", "red");
-            this.mailPilotLabel.x = 320 - this.mailPilotLabel.getBounds().width * 0.5;
-            this.mailPilotLabel.y = 40;
-            this.game.addChild(this.mailPilotLabel);
+            this.adventureLabel = new createjs.Text("SPACE ADVENTURE", "60px Consolas", "red");
+            this.adventureLabel.x = 320 - this.adventureLabel.getBounds().width * 0.5;
+            this.adventureLabel.y = 60;
+            this.game.addChild(this.adventureLabel);
             //Play Button
-            this.playButton = new objects.Button("playButton");
+            this.playButton = new objects.Button("startButton");
             this.playButton.x = 320;
             this.playButton.y = 240;
             this.playButton.on("click", this.playClicked, this);
             this.playButton.on("rollover", this.playSelected, this);
             this.game.addChild(this.playButton);
             // Ins Button
-            this.instructionButton = new objects.Button("tryAgainButton");
+            this.instructionButton = new objects.Button("instructionButton");
             this.instructionButton.x = 320;
             this.instructionButton.y = 320;
             this.instructionButton.on("click", this.instructionClicked, this);
@@ -44,16 +44,20 @@ var states;
             stage.addChild(this.game);
         } // Constructor
         Menu.prototype.playClicked = function () {
+            createjs.Sound.play("click", { loop: 1 });
             this.play = true;
         };
         Menu.prototype.instructionClicked = function () {
+            createjs.Sound.play("click", { loop: 1 });
             this.instruction = true;
         };
         Menu.prototype.playSelected = function () {
+            createjs.Sound.play("select", { loop: 1 });
             this.spaceman.x = 320 - this.playButton.getBounds().width * 0.7;
             this.spaceman.y = this.playButton.y - this.spaceman.getBounds().height * 0.1;
         };
         Menu.prototype.instructionSelected = function () {
+            createjs.Sound.play("select", { loop: 1 });
             this.spaceman.x = 320 - this.instructionButton.getBounds().width * 0.7;
             this.spaceman.y = this.instructionButton.y - this.spaceman.getBounds().height * 0.1;
         };

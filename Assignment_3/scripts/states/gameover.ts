@@ -47,15 +47,15 @@ module states {
             this.tryAgainButton.on("click", this.tryAgainClicked, this);
             this.tryAgainButton.on("rollover", this.tryAgainSelected, this);
             this.tryAgainButton.x = 320 ;
-            this.tryAgainButton.y = 320;
+            this.tryAgainButton.y = 300;
             this.game.addChild(this.tryAgainButton);
 
             //menu Button
-            this.menuButton = new objects.Button("playButton");
+            this.menuButton = new objects.Button("menuButton");
             this.menuButton.on("click", this.menuClicked, this);
             this.menuButton.on("rollover", this.menuSelected, this);
             this.menuButton.x = 320;
-            this.menuButton.y = 360;
+            this.menuButton.y = 380;
             this.game.addChild(this.menuButton);
 
             this.spaceman = new objects.Spaceman();
@@ -68,19 +68,23 @@ module states {
         } // Constructor
 
         public tryAgainClicked() {
+            createjs.Sound.play("click", { loop: 1 });
             this.tryAgain = true;
         }
 
         public menuClicked() {
+            createjs.Sound.play("click", { loop: 1 });
             this.menu = true;
         }
 
         public tryAgainSelected() {
+            createjs.Sound.play("select", { loop: 1 });
             this.spaceman.x = 320 - this.tryAgainButton.getBounds().width * 0.7;
             this.spaceman.y = this.tryAgainButton.y - this.spaceman.getBounds().height * 0.1;
         }
 
         public menuSelected() {
+            createjs.Sound.play("select", { loop: 1 });
             this.spaceman.x = 320 - this.menuButton.getBounds().width * 0.7;
             this.spaceman.y = this.menuButton.y - this.spaceman.getBounds().height * 0.1;
         }

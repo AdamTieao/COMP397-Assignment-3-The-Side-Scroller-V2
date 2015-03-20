@@ -4,8 +4,9 @@
         // PUBLIC INSTANCE VARIABLES
         width: number;
         height: number;
-        dx: number;
-        dy: number;
+        _dx: number;
+        _dy: number;
+        _dr: number;
         spawnNum: number;
         spawnRangeX: number;
         spawnRangeY: number;
@@ -15,7 +16,7 @@
         // CONSTRUCTOR
         constructor() {
             super(assetLoader.getResult("mete"));
-            this.sound = "thunder";
+            this.sound = "explosion";
             this.name = "mete";
 
             this.width = this.getBounds().width;
@@ -32,22 +33,25 @@
         // PUBLIC METHODS
         public update() {
             
-            this.x -= this.dx;
-            this.y += this.dy;
+            this.x -= this._dx;
+            this.y += this._dy;
             // check if island has left the bottom of the screen
             if (this.x <= -this.width) {
                 this.reset();
             }
+
+            this.rotation += this._dr;
+            
         }
 
         // Reset position of island to the right
         public reset() {
-            this.dx = Math.floor(Math.random() * 5 + 5);
-            this.dy = Math.floor(Math.random() * 4 - 2);
+            this._dx = Math.floor(Math.random() * 5 + 5);
+            this._dy = Math.floor(Math.random() * 4 - 2);
+            this._dr = Math.floor(Math.random() * 4 - 2);
             this.x = 640 + this.width;
             this.y = Math.floor(Math.random() * 480);
         }
-
     }
 
 } 

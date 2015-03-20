@@ -12,7 +12,7 @@ var objects;
         function Coin() {
             _super.call(this, assetLoader.getResult("coin"));
             this.dx = 5;
-            this.sound = "yay";
+            this.sound = "coinSound";
             this.name = "coin";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
