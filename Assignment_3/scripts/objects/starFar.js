@@ -35,4 +35,4 @@ var objects;
     })(createjs.Bitmap);
     objects.StarFar = StarFar;
 })(objects || (objects = {}));
-//# sourceMappingURL=starFar.js.map
+//# sourceMappingURL=starfar.js.map

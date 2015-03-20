@@ -22,7 +22,8 @@ var objects;
         // PUBLIC METHODS
         Spaceman.prototype.update = function () {
             this.y = stage.mouseY;
-            //this.x = stage.mouseX;
+            // Option to choose whether to allow the spaceman moving left and right
+            //this.x = stage.mouseX;    
         };
         return Spaceman;
     })(createjs.Bitmap);

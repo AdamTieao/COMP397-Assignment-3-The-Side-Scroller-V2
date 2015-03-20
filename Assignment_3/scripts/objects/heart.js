@@ -10,7 +10,7 @@ var objects;
         __extends(Heart, _super);
         // CONSTRUCTOR
         function Heart() {
-            _super.call(this, assetLoader.getResult("heart"));
+            _super.call(this, assetLoader.getResult("heart")); // Set the heart image
         }
         return Heart;
     })(createjs.Bitmap);

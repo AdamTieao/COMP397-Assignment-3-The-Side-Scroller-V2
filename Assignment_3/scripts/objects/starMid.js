@@ -21,11 +21,12 @@ var objects;
         StarMid.prototype.update = function () {
             this.x -= this.dx;
         };
-        // Reset position of island to the top
+        // Reset position of star to the right
         StarMid.prototype.reset = function () {
             this.x = this.width;
             this.y = -80;
         };
+        // Follow the other star
         StarMid.prototype.follow = function () {
             this.x = 640 + this.width;
             this.y = -80;

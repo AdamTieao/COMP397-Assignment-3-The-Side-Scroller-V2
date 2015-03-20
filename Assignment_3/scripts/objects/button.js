@@ -11,7 +11,7 @@ var objects;
         __extends(Button, _super);
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function Button(buttonName) {
-            _super.call(this, assetLoader.getResult(buttonName));
+            _super.call(this, assetLoader.getResult(buttonName)); // Set the button image
             this.dx = 5;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
