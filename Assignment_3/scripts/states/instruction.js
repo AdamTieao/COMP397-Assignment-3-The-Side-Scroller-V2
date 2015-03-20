@@ -31,7 +31,7 @@ var states;
             this.instruction4.y = 190;
             this.game.addChild(this.instruction4);
             //Try Again Button
-            this.menuButton = new objects.Button("tryAgainButton");
+            this.menuButton = new objects.Button("menuButton");
             this.menuButton.on("click", this.menuClicked, this);
             this.menuButton.on("rollover", this.menuSelected, this);
             this.menuButton.x = 320;

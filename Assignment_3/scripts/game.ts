@@ -57,8 +57,6 @@ var score: number = 0;
 var lives: number = 5;
 
 var manifest = [
-    { id: "cloud", src: "assets/images/cloud.png" },
-    { id: "island", src: "assets/images/island.png" },
     { id: "coin", src: "assets/images/coin.png" },
     { id: "spaceman", src: "assets/images/spaceman.png" },
     { id: "starFar", src: "assets/images/starFar.png" },

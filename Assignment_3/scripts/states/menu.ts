@@ -10,9 +10,6 @@
 
 /// <reference path="../objects/button.ts" />
 
-
-
-
 module states {
     // MENU STATE CLASS
     export class Menu {
