@@ -7,14 +7,14 @@
 /// <reference path="constants.ts" />
 
 /// <reference path="objects/spaceman.ts" />
-/// <reference path="objects/island.ts" />
 /// <reference path="objects/starfar.ts" />
-/// <reference path="objects/ocean.ts" />
 /// <reference path="objects/mete.ts" />
 /// <reference path="objects/starmid.ts" />
 /// <reference path="objects/starnear.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/coin.ts" />
+/// <reference path="objects/red.ts" />
+/// <reference path="objects/heart.ts" />
 
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameplay.ts" />
@@ -45,11 +45,6 @@ var highScore = 0;
 
 
 // Game Objects 
-//var spaceman: objects.Spaceman;
-//var island1: objects.Island;
-//var island2: objects.Island;
-//var island3: objects.Island;
-//var island4: objects.Island;
 var starFar1: objects.StarFar;
 var starFar2: objects.StarFar;
 var starMid1: objects.StarMid;
@@ -57,11 +52,6 @@ var starMid2: objects.StarMid;
 var starNear1: objects.StarNear;
 var starNear2: objects.StarNear;
 var space: objects.Space;
-//var coin: objects.Coin;
-//var metes: objects.Mete[] = [];
-//var scoreBoard: createjs.Text;
-//var livesBoard: createjs.Text;
-//var liveNumBoard: createjs.Text;
 
 var score: number = 0;
 var lives: number = 5;
@@ -84,6 +74,8 @@ var manifest = [
     { id: "startButton", src: "assets/images/startButton.png" },
     { id: "menuButton", src: "assets/images/menuButton.png" },
     { id: "instructionButton", src: "assets/images/instructionButton.png" },
+    { id: "red", src: "assets/images/red.png" },
+    { id: "heart", src: "assets/images/heart.png" },
     { id: "tryAgainButton", src: "assets/images/tryAgainButton.png" }
 ];
 

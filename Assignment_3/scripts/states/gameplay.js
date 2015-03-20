@@ -6,12 +6,15 @@
 /// <reference path="../objects/starfar.ts" />
 /// <reference path="../objects/starmid.ts" />
 /// <reference path="../objects/starnear.ts" />
+/// <reference path="../objects/red.ts" />
+/// <reference path="../objects/heart.ts" />
 var states;
 (function (states) {
     var GamePlay = (function () {
         function GamePlay() {
             this.score = 0;
             this.lives = 5;
+            this.scoreDis = 50;
             this.metes = [];
             // Instantiate Game Container
             this.game = new createjs.Container();
@@ -26,6 +29,16 @@ var states;
             this.spaceman = new objects.Spaceman();
             this.spaceman.x = this.spaceman.width * 0.5;
             this.game.addChild(this.spaceman);
+            this.red = new objects.Red();
+            this.red.alpha = 0;
+            this.game.addChild(this.red);
+            this.heart = new objects.Heart();
+            this.heart.alpha = 0;
+            this.game.addChild(this.heart);
+            this.scoreAdd = new createjs.Text("+100", "16px Arial", "yellow");
+            this.scoreAdd.x = this.spaceman.width;
+            this.scoreAdd.alpha = 0;
+            this.game.addChild(this.scoreAdd);
             this.scoreBoard = new createjs.Text("Score: " + score.toString(), "40px Arial", "yellow");
             this.scoreBoard.x = 250;
             this.game.addChild(this.scoreBoard);
@@ -35,8 +48,6 @@ var states;
             this.liveNumBoard = new createjs.Text("" + lives.toString, "40px Arial", "yellow");
             this.liveNumBoard.x = 130;
             this.game.addChild(this.liveNumBoard);
-            // Instantiate Scoreboard
-            //this.scoreboard = new objects.ScoreBoard(this.game);
             // Add Game Container to Stage
             stage.addChild(this.game);
         } // Constructor
@@ -51,10 +62,15 @@ var states;
                 if (collider.isColliding != true) {
                     createjs.Sound.play(collider.sound);
                     if (collider.name == "mete") {
+                        this.redAppear();
+                        this.heartAppear();
                         lives--;
                         collider.reset();
                     }
                     if (collider.name == "coin") {
+                        this.scoreAdd.y = collider.y - collider.height * 0.5;
+                        this.scoreApp = collider.y - collider.height * 0.5;
+                        this.scoreAppear();
                         score += 100;
                         collider.reset();
                     }
@@ -69,8 +85,11 @@ var states;
         };
         GamePlay.prototype.update = function () {
             this.spaceman.update();
+            this.scoreUp();
             this.coin.update();
             this.checkCollision(this.coin);
+            this.redDis();
+            this.heartDis();
             for (var mete = 0; mete < 3; mete++) {
                 this.metes[mete].update();
                 this.checkCollision(this.metes[mete]);
@@ -91,6 +110,35 @@ var states;
             }
             stage.update(); // Refreshes our stage
         }; // Update Method
+        GamePlay.prototype.scoreAppear = function () {
+            this.scoreAdd.alpha = 1;
+        };
+        GamePlay.prototype.scoreUp = function () {
+            if (this.scoreAdd.y < this.scoreApp - this.scoreDis) {
+                this.scoreAdd.alpha = 0;
+            }
+            else {
+                this.scoreAdd.y--;
+            }
+        };
+        GamePlay.prototype.redAppear = function () {
+            this.red.alpha = 0.5;
+        };
+        GamePlay.prototype.redDis = function () {
+            if (this.red.alpha >= 0) {
+                this.red.alpha -= 0.01;
+            }
+        };
+        GamePlay.prototype.heartAppear = function () {
+            this.heart.alpha = 1;
+        };
+        GamePlay.prototype.heartDis = function () {
+            this.heart.x = this.spaceman.x - this.spaceman.width * 0.5;
+            this.heart.y = this.spaceman.y - this.spaceman.height * 0.25;
+            if (this.heart.alpha >= 0) {
+                this.heart.alpha -= 0.01;
+            }
+        };
         return GamePlay;
     })();
     states.GamePlay = GamePlay; // GamePlay Class

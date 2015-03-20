@@ -7,23 +7,23 @@
 /// <reference path="../objects/starfar.ts" />
 /// <reference path="../objects/starmid.ts" />
 /// <reference path="../objects/starnear.ts" />
+/// <reference path="../objects/red.ts" />
+/// <reference path="../objects/heart.ts" />
 
 
 module states {
 
     export class GamePlay {
         // Game Objects 
-        //public game: createjs.Container;
-        //public scoreboard: objects.ScoreBoard;
-        //public plane: objects.Plane;
-        //public island: objects.Island
-        //public clouds: objects.Cloud[] = [];
-        //public ocean: objects.Ocean;
         public game: createjs.Container;
 
         public score: number = 0;
         public lives: number = 5;
-
+        public scoreAdd: createjs.Text;
+        public scoreApp: number;
+        public scoreDis: number = 50;
+        public red: objects.Red;
+        public heart: objects.Heart;
 
 
         public spaceman: objects.Spaceman;  
@@ -36,6 +36,7 @@ module states {
         constructor() {
             // Instantiate Game Container
             this.game = new createjs.Container();
+
             
             this.coin = new objects.Coin();
             this.coin.reset();
@@ -51,6 +52,19 @@ module states {
             this.spaceman.x = this.spaceman.width * 0.5;
             this.game.addChild(this.spaceman);
 
+            this.red = new objects.Red();
+            this.red.alpha = 0;            
+            this.game.addChild(this.red);
+
+            this.heart = new objects.Heart();
+            this.heart.alpha = 0;
+            this.game.addChild(this.heart);
+
+            this.scoreAdd = new createjs.Text("+100", "16px Arial", "yellow");
+            this.scoreAdd.x = this.spaceman.width;
+            this.scoreAdd.alpha = 0;
+            this.game.addChild(this.scoreAdd);
+
             this.scoreBoard = new createjs.Text("Score: " + score.toString(), "40px Arial", "yellow");
             this.scoreBoard.x = 250;
             this.game.addChild(this.scoreBoard)
@@ -62,9 +76,6 @@ module states {
             this.liveNumBoard = new createjs.Text("" + lives.toString, "40px Arial", "yellow");
             this.liveNumBoard.x = 130;
             this.game.addChild(this.liveNumBoard);
-
-            // Instantiate Scoreboard
-            //this.scoreboard = new objects.ScoreBoard(this.game);
 
             // Add Game Container to Stage
             stage.addChild(this.game);
@@ -83,10 +94,15 @@ module states {
                 if (collider.isColliding != true) {
                     createjs.Sound.play(collider.sound);
                     if (collider.name == "mete") {
+                        this.redAppear();
+                        this.heartAppear();
                         lives--;
                         collider.reset();
                     }
                     if (collider.name == "coin") {
+                        this.scoreAdd.y = collider.y - collider.height * 0.5;
+                        this.scoreApp = collider.y - collider.height * 0.5;
+                        this.scoreAppear();
                         score += 100;
                         collider.reset();
                     }
@@ -104,10 +120,15 @@ module states {
         
             this.spaceman.update();
             
+            this.scoreUp()
             
             this.coin.update();
 
             this.checkCollision(this.coin);
+
+            this.redDis();
+
+            this.heartDis();
 
             for (var mete = 0; mete < 3; mete++) {
                 this.metes[mete].update();
@@ -135,6 +156,40 @@ module states {
 
         } // Update Method
 
+        public scoreAppear() {
+            this.scoreAdd.alpha = 1;
+        }        
+
+        public scoreUp() {
+            if (this.scoreAdd.y < this.scoreApp - this.scoreDis) {
+                this.scoreAdd.alpha = 0;
+            }
+            else {
+                this.scoreAdd.y--;
+            }
+        }
+
+        public redAppear() {
+            this.red.alpha = 0.5;
+        }
+
+        public redDis() {
+            if (this.red.alpha >= 0) {
+                this.red.alpha -= 0.01;
+            }
+        }
+
+        public heartAppear() {
+            this.heart.alpha = 1;
+        }
+
+        public heartDis() {
+            this.heart.x = this.spaceman.x - this.spaceman.width * 0.5;
+            this.heart.y = this.spaceman.y - this.spaceman.height * 0.25;
+            if (this.heart.alpha >= 0) {
+                this.heart.alpha -= 0.01;
+            }
+        }
         
 
     } // GamePlay Class

@@ -5,14 +5,14 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="constants.ts" />
 /// <reference path="objects/spaceman.ts" />
-/// <reference path="objects/island.ts" />
 /// <reference path="objects/starfar.ts" />
-/// <reference path="objects/ocean.ts" />
 /// <reference path="objects/mete.ts" />
 /// <reference path="objects/starmid.ts" />
 /// <reference path="objects/starnear.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/coin.ts" />
+/// <reference path="objects/red.ts" />
+/// <reference path="objects/heart.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/gameplay.ts" />
 /// <reference path="states/gameover.ts" />
@@ -33,11 +33,6 @@ var assetLoader;
 var currentScore = 0;
 var highScore = 0;
 // Game Objects 
-//var spaceman: objects.Spaceman;
-//var island1: objects.Island;
-//var island2: objects.Island;
-//var island3: objects.Island;
-//var island4: objects.Island;
 var starFar1;
 var starFar2;
 var starMid1;
@@ -45,11 +40,6 @@ var starMid2;
 var starNear1;
 var starNear2;
 var space;
-//var coin: objects.Coin;
-//var metes: objects.Mete[] = [];
-//var scoreBoard: createjs.Text;
-//var livesBoard: createjs.Text;
-//var liveNumBoard: createjs.Text;
 var score = 0;
 var lives = 5;
 var manifest = [
@@ -70,6 +60,8 @@ var manifest = [
     { id: "startButton", src: "assets/images/startButton.png" },
     { id: "menuButton", src: "assets/images/menuButton.png" },
     { id: "instructionButton", src: "assets/images/instructionButton.png" },
+    { id: "red", src: "assets/images/red.png" },
+    { id: "heart", src: "assets/images/heart.png" },
     { id: "tryAgainButton", src: "assets/images/tryAgainButton.png" }
 ];
 function Preload() {

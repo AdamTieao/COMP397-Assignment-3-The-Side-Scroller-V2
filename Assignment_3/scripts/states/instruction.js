@@ -1,6 +1,4 @@
 /// <reference path="../constants.ts" />
-/// <reference path="../objects/island.ts" />
-/// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/label.ts" />
 var states;
@@ -40,8 +38,8 @@ var states;
             this.menuButton.y = 320;
             this.game.addChild(this.menuButton);
             this.spaceman = new objects.Spaceman();
-            this.spaceman.x = 320 - this.menuButton.getBounds().width * 0.7;
-            this.spaceman.y = this.menuButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.menuButton.width * 0.7;
+            this.spaceman.y = this.menuButton.y - this.spaceman.height * 0.1;
             this.game.addChild(this.spaceman);
             // Add Game Container to Stage
             stage.addChild(this.game);
@@ -52,8 +50,8 @@ var states;
         };
         Instruction.prototype.menuSelected = function () {
             createjs.Sound.play("select", { loop: 1 });
-            this.spaceman.x = 320 - this.menuButton.getBounds().width * 0.7;
-            this.spaceman.y = this.menuButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.menuButton.width * 0.7;
+            this.spaceman.y = this.menuButton.y - this.spaceman.height * 0.1;
         };
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Instruction.prototype.update = function () {

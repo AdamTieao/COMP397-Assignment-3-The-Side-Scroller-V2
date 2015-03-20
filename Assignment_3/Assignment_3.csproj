@@ -72,17 +72,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\1945.bmp" />
     <Content Include="assets\images\coin.png" />
+    <Content Include="assets\images\heart.png" />
     <Content Include="assets\images\instructionButton.png" />
     <Content Include="assets\images\menuButton.png" />
     <Content Include="assets\images\mete.png" />
+    <Content Include="assets\images\red.png" />
     <Content Include="assets\images\space.png" />
-    <Content Include="assets\images\cloud.png" />
-    <Content Include="assets\images\island.png" />
-    <Content Include="assets\images\ocean.gif" />
-    <Content Include="assets\images\plane.png" />
-    <Content Include="assets\images\sideplane.gif" />
     <Content Include="assets\images\spaceman.png" />
     <Content Include="assets\images\starFar.png" />
     <Content Include="assets\images\starMid.png" />
@@ -106,10 +102,10 @@
     <TypeScriptCompile Include="scripts\game.ts" />
     <TypeScriptCompile Include="scripts\objects\button.ts" />
     <TypeScriptCompile Include="scripts\objects\coin.ts" />
-    <TypeScriptCompile Include="scripts\objects\island.ts" />
+    <TypeScriptCompile Include="scripts\objects\heart.ts" />
     <TypeScriptCompile Include="scripts\objects\label.ts" />
     <TypeScriptCompile Include="scripts\objects\mete.ts" />
-    <TypeScriptCompile Include="scripts\objects\ocean.ts" />
+    <TypeScriptCompile Include="scripts\objects\red.ts" />
     <TypeScriptCompile Include="scripts\objects\spaceman.ts" />
     <TypeScriptCompile Include="scripts\objects\space.ts" />
     <TypeScriptCompile Include="scripts\objects\starFar.ts" />

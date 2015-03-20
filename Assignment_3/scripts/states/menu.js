@@ -37,8 +37,8 @@ var states;
             this.instructionButton.on("rollover", this.instructionSelected, this);
             this.game.addChild(this.instructionButton);
             this.spaceman = new objects.Spaceman();
-            this.spaceman.x = 320 - this.playButton.getBounds().width * 0.7;
-            this.spaceman.y = this.playButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.playButton.width * 0.7;
+            this.spaceman.y = this.playButton.y - this.spaceman.height * 0.1;
             this.game.addChild(this.spaceman);
             // Add Game Container to Stage
             stage.addChild(this.game);
@@ -53,13 +53,13 @@ var states;
         };
         Menu.prototype.playSelected = function () {
             createjs.Sound.play("select", { loop: 1 });
-            this.spaceman.x = 320 - this.playButton.getBounds().width * 0.7;
-            this.spaceman.y = this.playButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.playButton.width * 0.7;
+            this.spaceman.y = this.playButton.y - this.spaceman.height * 0.1;
         };
         Menu.prototype.instructionSelected = function () {
             createjs.Sound.play("select", { loop: 1 });
-            this.spaceman.x = 320 - this.instructionButton.getBounds().width * 0.7;
-            this.spaceman.y = this.instructionButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.instructionButton.width * 0.7;
+            this.spaceman.y = this.instructionButton.y - this.spaceman.height * 0.1;
         };
         //// PUBLIC METHODS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Menu.prototype.update = function () {

@@ -17,19 +17,11 @@
 
             this.x = 0;
 
-            //this.regX = this.width * 0.5;
-            //this.regY = this.height * 0.5;
-
         }
 
         // PUBLIC METHODS
         public update() {
             this.x -= this.dx;
-
-            // check if island has left the bottom of the screen
-            //if (this.x <= -(this.width - 640)) {
-            //    this.reset();
-            //}
         }
 
         // Reset position of island to the top

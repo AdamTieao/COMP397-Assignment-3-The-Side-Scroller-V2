@@ -23,7 +23,6 @@ var objects;
         // PUBLIC METHODS
         Coin.prototype.update = function () {
             this.x -= this.dx;
-            //this.y += this.dy;
             // check if island has left the bottom of the screen
             if (this.x <= -this.width) {
                 this.reset();
@@ -32,7 +31,7 @@ var objects;
         // Reset position of island to the right
         Coin.prototype.reset = function () {
             this.x = 640 + this.width;
-            this.y = Math.floor(Math.random() * 480);
+            this.y = Math.random() * 480;
             this.visible = true;
         };
         return Coin;

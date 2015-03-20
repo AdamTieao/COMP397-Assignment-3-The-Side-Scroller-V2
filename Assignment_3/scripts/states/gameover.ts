@@ -1,6 +1,4 @@
 ﻿/// <reference path="../constants.ts" />
-/// <reference path="../objects/island.ts" />
-/// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/label.ts" />
 
@@ -31,13 +29,13 @@ module states {
             this.game.addChild(this.gameOverLabel);
 
             //Final Score Label
-            this.finalScoreLabel = new createjs.Text("Final Score: " + score.toString(), "40px Consolas", "yellow");
+            this.finalScoreLabel = new createjs.Text("Final Score: " + score.toString(), "40px Consolas", "orange");
             this.finalScoreLabel.x = 320 - this.finalScoreLabel.getBounds().width * 0.5;
             this.finalScoreLabel.y = 140;
             this.game.addChild(this.finalScoreLabel);
 
             //High Score Label
-            this.highScoreLabel = new createjs.Text("Highest Score: " + highScore.toString(), "40px Consolas", "yellow");
+            this.highScoreLabel = new createjs.Text("Highest Score: " + highScore.toString(), "40px Consolas", "orange");
             this.highScoreLabel.x = 320 - this.highScoreLabel.getBounds().width * 0.5;
             this.highScoreLabel.y = 200;
             this.game.addChild(this.highScoreLabel);
@@ -59,8 +57,8 @@ module states {
             this.game.addChild(this.menuButton);
 
             this.spaceman = new objects.Spaceman();
-            this.spaceman.x = 320 - this.tryAgainButton.getBounds().width * 0.7;
-            this.spaceman.y = this.tryAgainButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.tryAgainButton.width * 0.7;
+            this.spaceman.y = this.tryAgainButton.y - this.spaceman.height * 0.1;
             this.game.addChild(this.spaceman);
 
             // Add Game Container to Stage
@@ -79,14 +77,14 @@ module states {
 
         public tryAgainSelected() {
             createjs.Sound.play("select", { loop: 1 });
-            this.spaceman.x = 320 - this.tryAgainButton.getBounds().width * 0.7;
-            this.spaceman.y = this.tryAgainButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.tryAgainButton.width * 0.7;
+            this.spaceman.y = this.tryAgainButton.y - this.spaceman.height * 0.1;
         }
 
         public menuSelected() {
             createjs.Sound.play("select", { loop: 1 });
-            this.spaceman.x = 320 - this.menuButton.getBounds().width * 0.7;
-            this.spaceman.y = this.menuButton.y - this.spaceman.getBounds().height * 0.1;
+            this.spaceman.x = 320 - this.menuButton.width * 0.7;
+            this.spaceman.y = this.menuButton.y - this.spaceman.height * 0.1;
         }
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++

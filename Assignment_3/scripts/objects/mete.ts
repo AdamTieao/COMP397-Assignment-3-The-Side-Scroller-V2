@@ -46,11 +46,11 @@
 
         // Reset position of island to the right
         public reset() {
-            this._dx = Math.floor(Math.random() * 5 + 5);
-            this._dy = Math.floor(Math.random() * 4 - 2);
-            this._dr = Math.floor(Math.random() * 4 - 2);
+            this._dx = Math.random() * 5 + 5;
+            this._dy = Math.random() * 4 - 2;
+            this._dr = Math.random() * 4 - 2;
             this.x = 640 + this.width;
-            this.y = Math.floor(Math.random() * 480);
+            this.y = Math.random() * 480;
         }
     }
 
